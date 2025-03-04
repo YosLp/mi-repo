@@ -1,0 +1,21 @@
+name: CI
+
+on: [push, pull_request]  # Ejecuta el workflow en cada push y pull request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Usa una máquina virtual de Ubuntu
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Usa Node.js versión 18
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas
+        run: npm test
