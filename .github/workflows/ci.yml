@@ -1,21 +1,22 @@
-name: CI
+name: CI Pipeline
 
-on: [push, pull_request]  # Ejecuta el workflow en cada push y pull request
+on: [push, pull_request]  # Ejecuta el workflow en cada push o pull request
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Usa una máquina virtual de Ubuntu
+  test:
+    runs-on: ubuntu-latest  # Usa un sistema Ubuntu en GitHub Actions
     steps:
-      - name: Checkout del código
+      - name: Clonar el repositorio
         uses: actions/checkout@v3
 
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Usa Node.js versión 18
+          node-version: 16
 
       - name: Instalar dependencias
         run: npm install
 
       - name: Ejecutar pruebas
         run: npm test
+
